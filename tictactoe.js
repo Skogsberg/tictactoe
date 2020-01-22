@@ -15,8 +15,6 @@ function easy(board) {
         }
     }
 
-    console.log(freeSquares);
-
     while (done != true) {
         move[0] = Math.floor(Math.random() * 3);
         move[1] = Math.floor(Math.random() * 3);
