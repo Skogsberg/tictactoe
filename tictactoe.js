@@ -1,6 +1,3 @@
-// board = [['', '', ''],
-//          ['', '', ''],
-//          ['', '', '']];
 function easy(board) {
     let move = [undefined, undefined];
     let freeSquares = [];
@@ -25,8 +22,7 @@ function easy(board) {
             }
         }
     }
-
-    return move;
+    makeMove(move);
 }
 
 function hard(board) {
@@ -229,11 +225,57 @@ function hard(board) {
             console.log("Corner move")
         }
     }
-    return move;
+    makeMove(move);
 }
 
-board = [['o', 'x', 'o'],
-         ['x', 'x', 'o'],
-         ['o', 'o', 'x']];
+function medium(board) {
+    let move = [undefined, undefined];
 
-console.log(hard(board));
+    if (board[3][1] == "easy") {
+        move = easy(board);
+        board[3][1] = "hard";
+    }
+    else if (board[3][1] == "hard") {
+        move = hard(board);
+        board[3][1] = "easy";
+    }
+    else {
+        console.log("medium function error: can not decide between easy or hard");
+    }
+}
+
+function makeMove(board, move) {
+    board[move[0]][move[1]] = 'o';
+}
+
+function decideMoveDependingOnDifficulty(board) {
+    if (board[3][0] == "easy") {
+        easy(board);
+    }
+    else if (board[3][0] == "medium") {
+        medium(board);
+    }
+    else if (board[3][0] == "hard") {
+        hard(board);
+    }
+    else {
+        console.log("decideLevel function error: can not decide difficulty")
+    }
+}
+
+function getPlayerInfo() {
+    let selectedRadioButton = document.getElementsByName("difficulty");
+    playerName = document.getElementsByName("name")[0].value;
+    for (let i = 0; i < 3; i++) {
+        if (selectedRadioButton[i].checked) {
+            board[3][0] = selectedRadioButton[i].value;
+        }
+    }
+    console.log(playerName);
+    console.log(board[3][0]);
+}
+
+let playerName = "";
+let board = [['', '', ''],
+             ['', '', ''],
+             ['', '', ''], ["", "easy"]];
