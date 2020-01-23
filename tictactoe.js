@@ -277,6 +277,7 @@ function medium(board) {
 
 function makeMove(board, move) {
     board[move[0]][move[1]] = 'o';
+    drawBoard(board);
 }
 
 function decideMoveDependingOnDifficulty(board) {
@@ -389,6 +390,9 @@ function onload() {
         board = JSON.parse(localStorage.getItem("board"));
         document.getElementById("difficulty").innerText = playerInfo.difficulty;
         document.getElementById("name").innerHTML = playerInfo.playerName;
+        document.getElementById("win").innerHTML = playerInfo.wins;
+        document.getElementById("draw").innerHTML = playerInfo.ties;
+        document.getElementById("loss").innerHTML = playerInfo.losses;
     }
     catch(e) {
         console.log("onload function error");
@@ -398,9 +402,88 @@ function onload() {
         }
         if (board == null) {
             board = [['', '', ''],
-             ['', '', ''],
-             ['', '', ''], ["", "easy"]];
+                     ['', '', ''],
+                     ['', '', ''], ["", "easy"]];
         }
+    }
+}
+
+function drawBoard(board) {
+    document.getElementById("square1").innerHTML = board[0][0].toUpperCase();
+    document.getElementById("square2").innerHTML = board[0][1].toUpperCase();
+    document.getElementById("square3").innerHTML = board[0][2].toUpperCase();
+    document.getElementById("square4").innerHTML = board[1][0].toUpperCase();
+    document.getElementById("square5").innerHTML = board[1][1].toUpperCase();
+    document.getElementById("square6").innerHTML = board[1][2].toUpperCase();
+    document.getElementById("square7").innerHTML = board[2][0].toUpperCase();
+    document.getElementById("square8").innerHTML = board[2][1].toUpperCase();
+    document.getElementById("square9").innerHTML = board[2][2].toUpperCase();
+}
+
+function playerMove(squareId) {
+    let freeSquares = [];
+    let move = [undefined, undefined];
+    let isFree = false;
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[i][j] == '') {
+                freeSquares.push([i, j]);
+            }
+        }
+    }
+    switch (squareId) {
+        case 1:
+            move[0] = 0;
+            move[1] = 0;
+            break;
+        case 2:
+            move[0] = 0;
+            move[1] = 1;
+            break;
+        case 3:
+            move[0] = 0;
+            move[1] = 2;
+            break;
+        case 4:
+            move[0] = 1;
+            move[1] = 0;
+            break;
+        case 5:
+            move[0] = 1;
+            move[1] = 1;
+            break;
+        case 6:
+            move[0] = 1;
+            move[1] = 2;
+            break;
+        case 1:
+            move[0] = 2;
+            move[1] = 0;
+            break;
+        case 1:
+            move[0] = 2;
+            move[1] = 1;
+            break;
+        case 1:
+            move[0] = 2;
+            move[1] = 2;
+            break;
+        default:
+            console.log("playerMove() funciton error");
+            break;
+    }
+    for (let free of freeSquares) {
+        if (free[0] == move[0] && free[1] == move[1]) {
+            isFree = true;
+        }
+    }
+    if (isFree) {
+        board[move[0]][move[1]] = 'x';
+        drawBoard(board);
+    }
+    else {
+        console.log("Player can not make this move");
     }
 }
 
