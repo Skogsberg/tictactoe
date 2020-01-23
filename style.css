@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Candal&display=swap');
-
+/*Settings for image logo on index.html*/
 .imgLogo{
     border-radius: 50%;
     border: 3px solid;
@@ -11,6 +11,7 @@
     height: 210px;
     box-shadow: 2px 4px;
 }
+/*Settings for text font*/
 .text{
     font-family: 'Candal', sans-serif;
     color: rgba(0, 0, 0, 0.6);
@@ -41,6 +42,7 @@
     height: 30px;
     background-color: rgba(0, 0, 0, 0.10);
 }
+/*Settings for radio buttons*/
 .in{
     border: 2px solid;
     border-color: rgba(0, 0, 0, 0.6);
@@ -61,4 +63,51 @@
 .text-small{
     font-size: 10px;
     padding-bottom: 3px;
+}
+.game-container{
+    height: 100px;
+}
+.new-buttom{
+    border: 2px solid;
+    border-color: rgba(0, 0, 0, 0.6);
+    width: 100px;
+    height: 30px;
+}
+/*Stylecode for the game contianer*/
+body {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+}
+h2 {
+margin: 0 auto;
+font-size: 35px;
+margin: 10px;
+}
+.flex-container {
+/* In order to use flex-box we need to first set our display property */
+display: flex;
+/* center the container horizontally */
+justify-content: center;
+/* this will center content vertically */
+align-items: center;
+/* tells the container to align the children in columns rather than rows */
+padding: 5px;
+}
+.flex-column {
+height: 100%;
+width: 100%;
+flex-direction: column;
+}
+.flex-wrap {
+/* tells the container to drop down once it reaches max-width */
+flex-wrap: wrap;
+height: 600px;
+width: 650px;
+}
+.square {
+border: 2px solid rgba(0, 0, 0, .75);
+border-radius: 12px;
+height: 200px;
+width: 200px;
+background-color: rgba(0, 0, 0, 0.15);
 }
