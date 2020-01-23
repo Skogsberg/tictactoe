@@ -389,6 +389,10 @@ function onload() {
         board = JSON.parse(localStorage.getItem("board"));
         document.getElementById("difficulty").innerText = playerInfo.difficulty;
         document.getElementById("name").innerHTML = playerInfo.playerName;
+    }
+    catch(e) {
+        console.log("onload function error");
+        console.log(e);
         if (playerInfo == null) {
             playerInfo = {playerName:"", wins:2, losses:0, ties:0, difficulty:""};
         }
@@ -397,10 +401,6 @@ function onload() {
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
         }
-    }
-    catch(e) {
-        console.log("onload function error");
-        console.log(e);
     }
 }
 
