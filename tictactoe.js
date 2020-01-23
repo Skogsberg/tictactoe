@@ -138,7 +138,6 @@ function hard(board) {
         }
 
         if (win) {
-            console.log("Win move")
             move[0] = win_coordinates[0];
             move[1] = win_coordinates[1];
         }
@@ -219,7 +218,6 @@ function hard(board) {
             }
 
             if (block) {
-                console.log("Block move")
                 move[0] = block_coordinates[0];
                 move[1] = block_coordinates[1];
             }
@@ -248,14 +246,11 @@ function hard(board) {
                     move[1] = 1;
                 }
                 else {
-                    console.log("Can not find any")
                     move = easy(board);
                 }
-                console.log("Corner move")
             }
         }
     }
-    console.log(move);
     makeMove(board, move);
 }
 
@@ -293,6 +288,7 @@ function decideMoveDependingOnDifficulty(board) {
     else {
         console.log("decideLevel() function error: can not decide difficulty")
     }
+    playerInfo.playerAllowed = true;
 }
 
 function getPlayerInfo() {
@@ -304,90 +300,103 @@ function getPlayerInfo() {
             board[3][0] = selectedRadioButton[i].value;
         }
     }
-    localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
-    localStorage.setItem("board", JSON.stringify(board));
+    sessionStorage.setItem("playerInfo", JSON.stringify(playerInfo));
+    sessionStorage.setItem("board", JSON.stringify(board));
     window.location.replace("./game.html");
-    console.log(playerInfo.playerName);
-    console.log(board[3][0]);
 }
 
 function checkForWin(board) {
-    let win = undefined;
+    let win = [];
     let players = ['x', 'o'];
-    outer: for (player of players) {
+    let foundX = false;
+    let foundO = false;
+    outer: for (let player of players) {
         for (let i = 0; i < 3; i++) {
             if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
-                win = player;
+                win.push(player);
                 break outer;
             }
             else if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
-                win = player;
+                win.push(player);
                 break outer;
             }
             else if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
-                win = player;
+                win.push(player);
                 break outer;
             }
             else if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
-                win = player;
+                win.push(player);
                 break outer;
             }
             else if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
-                win = player;
+                win.push(player);
                 break outer;
             }
             else if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
-                win = player;
+                win.push(player);
                 break outer;
             }
         }
         if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
-            win = player;
+            win.push(player);
             break outer;
         }
         else if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
-            win = player;
+            win.push(player);
             break outer;
         }
         else if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
-            win = player;
+            win.push(player);
             break outer;
         }
         else if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
-            win = player;
+            win.push(player);
             break outer;
         }
         else if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
-            win = player;
+            win.push(player);
             break outer;
         }
         else if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
-            win = player;
+            win.push(player);
             break outer;
+        }
+    }
+    for (let player of win) {
+        if (player == 'x') {
+            foundX = true;
+        }
+        else if (player == 'o') {
+            foundO = true;
         }
     }
 
-    if (win == 'o') {
-        playerInfo.losses++;
+    if (foundX && foundO) {
+        playerInfo.movesMade = 9;
+        playerInfo.ties++;
     }
-    else if (win = 'x') {
+    else if (foundX) {
+        playerInfo.movesMade = 9;
         playerInfo.wins++;
     }
-    else {
+    else if (foundO) {
+        playerInfo.movesMade = 9;
+        playerInfo.losses++;
+    }
+    else if (playerInfo.movesMade == 9 && !foundX && !foundO) {
+        playerInfo.movesMade = 9;
         playerInfo.ties++;
     }
 
     document.getElementById("win").innerHTML = playerInfo.wins;
     document.getElementById("draw").innerHTML = playerInfo.ties;
     document.getElementById("loss").innerHTML = playerInfo.losses;
-
-    return win;
 }
 
 function onload() {
     try {
-        playerInfo = JSON.parse(localStorage.getItem("playerInfo"));
-        board = JSON.parse(localStorage.getItem("board"));
+        playerInfo = JSON.parse(sessionStorage.getItem("playerInfo"));
+        board = JSON.parse(sessionStorage.getItem("board"));
         document.getElementById("difficulty").innerHTML = playerInfo.difficulty;
         document.getElementById("name").innerHTML = playerInfo.playerName;
         document.getElementById("win").innerHTML = playerInfo.wins;
@@ -398,7 +407,7 @@ function onload() {
         console.log("onload function error");
         console.log(e);
         if (playerInfo == null) {
-            playerInfo = {playerName:"", wins:2, losses:0, ties:0, difficulty:""};
+            playerInfo = {playerName:"", wins:0, losses:0, ties:0, difficulty:"", movesMade:0, playerAllowed:true};
         }
         if (board == null) {
             board = [['', '', ''],
@@ -432,8 +441,6 @@ function playerMove(squareId) {
             }
         }
     }
-    console.log(freeSquares);
-
     switch (squareId) {
         case 1:
             move[0] = 0;
@@ -472,7 +479,7 @@ function playerMove(squareId) {
             move[1] = 2;
             break;
         default:
-            console.log("playerMove() funciton error");
+            console.log("playerMove() function error");
             break;
     }
     for (let free of freeSquares) {
@@ -480,10 +487,18 @@ function playerMove(squareId) {
             isFree = true;
         }
     }
-    if (isFree) {
+    if (isFree && playerInfo.movesMade < 9 && playerInfo.playerAllowed) {
         board[move[0]][move[1]] = 'x';
+        playerInfo.movesMade++;
         drawBoard(board);
-        decideMoveDependingOnDifficulty(board);
+        checkForWin(board);
+        playerInfo.playerAllowed = false;
+        if (playerInfo.movesMade < 9) {
+            timeout = setTimeout(decideMoveDependingOnDifficulty, 1000, board);
+            drawBoard(board);
+            playerInfo.movesMade++;
+            checkForWin(board);
+        }
     }
     else {
         console.log("Player can not make this move");
@@ -491,14 +506,19 @@ function playerMove(squareId) {
 }
 
 function restart() {
+
     board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
     board[3][0] = playerInfo.difficulty;
+    playerInfo.movesMade = 0;
+    clearTimeout(timeout);
+    playerInfo.playerAllowed = true;
     drawBoard(board);
 }
 
-let playerInfo = {playerName:"", wins:2, losses:0, ties:0, difficulty:""};
+let playerInfo = {playerName:"", wins:0, losses:0, ties:0, difficulty:"", movesMade:0, playerAllowed:true};
+let timeout;
 
 let board = [['', '', ''],
              ['', '', ''],
