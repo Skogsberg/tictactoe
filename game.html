@@ -3,31 +3,32 @@
 <head>
     <title>TicTacToe</title>
     <link rel="stylesheet" href="style.css">
-    <script src="tictactoe.js"></script>
+
 </head>
 <body>
     <!--Code for the upper container-->
     <div class="container game-container">
         <p class="text">TicTacToe</p>
         <p class="text"><span>Difficulty: </span><span id="difficulty">x</span>
-        <span>| Name: </span><span id="name">y </span><span>| Win: </span>
+        <span>| Name: </span><span id="name">y</span><span> | Win: </span>
         <span id="win">0 </span> <span>| Draw: </span><span id="draw">0 </span>
         <span>| Loss: </span><span id="loss">0 </span> <button type="button" class="play-buttom text new-buttom">New Game</button></p>
     </div>
     <!--Code for game container-->
     <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square2"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1"></div>
         </div>
 
     </div>
+    <script src="tictactoe.js"></script>
 </body>
 </html>
