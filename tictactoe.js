@@ -34,7 +34,7 @@ function hard(board) {
     let block_coordinates = [undefined, undefined];
     let win_coordinates = [undefined, undefined];
     let usedSquares = [];
-    
+
     // The AI is 'o'
 
     for (let i = 0; i < 3; i++) {
@@ -388,7 +388,7 @@ function onload() {
     try {
         playerInfo = JSON.parse(localStorage.getItem("playerInfo"));
         board = JSON.parse(localStorage.getItem("board"));
-        document.getElementById("difficulty").innerText = playerInfo.difficulty;
+        document.getElementById("difficulty").innerHTML = playerInfo.difficulty;
         document.getElementById("name").innerHTML = playerInfo.playerName;
         document.getElementById("win").innerHTML = playerInfo.wins;
         document.getElementById("draw").innerHTML = playerInfo.ties;
