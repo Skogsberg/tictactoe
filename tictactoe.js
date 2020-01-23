@@ -1,3 +1,5 @@
+'use strict';
+
 function easy(board) {
     let move = [undefined, undefined];
     let freeSquares = [];
@@ -22,7 +24,7 @@ function easy(board) {
             }
         }
     }
-    makeMove(move);
+    makeMove(board, move);
 }
 
 function hard(board) {
@@ -225,7 +227,7 @@ function hard(board) {
             console.log("Corner move")
         }
     }
-    makeMove(move);
+    makeMove(board, move);
 }
 
 function medium(board) {
@@ -240,7 +242,7 @@ function medium(board) {
         board[3][1] = "easy";
     }
     else {
-        console.log("medium function error: can not decide between easy or hard");
+        console.log("medium() function error: can not decide between easy or hard");
     }
 }
 
@@ -259,7 +261,7 @@ function decideMoveDependingOnDifficulty(board) {
         hard(board);
     }
     else {
-        console.log("decideLevel function error: can not decide difficulty")
+        console.log("decideLevel() function error: can not decide difficulty")
     }
 }
 
@@ -279,3 +281,8 @@ let playerName = "";
 let board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
+let wins = 0;
+let losses = 0;
+let draws = 0;
+
+console.log(hard(board));
