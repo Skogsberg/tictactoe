@@ -432,6 +432,8 @@ function playerMove(squareId) {
             }
         }
     }
+    console.log(freeSquares);
+
     switch (squareId) {
         case 1:
             move[0] = 0;
@@ -457,15 +459,15 @@ function playerMove(squareId) {
             move[0] = 1;
             move[1] = 2;
             break;
-        case 1:
+        case 7:
             move[0] = 2;
             move[1] = 0;
             break;
-        case 1:
+        case 8:
             move[0] = 2;
             move[1] = 1;
             break;
-        case 1:
+        case 9:
             move[0] = 2;
             move[1] = 2;
             break;
@@ -481,17 +483,19 @@ function playerMove(squareId) {
     if (isFree) {
         board[move[0]][move[1]] = 'x';
         drawBoard(board);
+        decideMoveDependingOnDifficulty(board);
     }
     else {
         console.log("Player can not make this move");
     }
 }
 
-function restart(board) {
+function restart() {
     board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
     board[3][0] = playerInfo.difficulty;
+    drawBoard(board);
 }
 
 let playerInfo = {playerName:"", wins:2, losses:0, ties:0, difficulty:""};

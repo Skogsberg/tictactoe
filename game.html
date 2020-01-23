@@ -11,20 +11,20 @@
         <p class="text"><span>Difficulty: </span><span id="difficulty">x</span>
         <span>| Name: </span><span id="name">y</span><span> | Win: </span>
         <span id="win">0 </span> <span>| Draw: </span><span id="draw">0 </span>
-        <span>| Loss: </span><span id="loss">0 </span> <button type="button" class="play-buttom text new-buttom">New Game</button></p>
+        <span>| Loss: </span><span id="loss">0 </span> <button type="button" class="play-buttom text new-buttom" onclick="restart()">New Game</button></p>
     </div>
     <!--Code for game container-->
     <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board">
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square2"></div>
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square1"></div>
-        <div class="square text game-text" id="square1"></div>
+        <div class="square text game-text" id="square1" onclick="playerMove(1)"></div>
+        <div class="square text game-text" id="square2" onclick="playerMove(2)"></div>
+        <div class="square text game-text" id="square3" onclick="playerMove(3)"></div>
+        <div class="square text game-text" id="square4" onclick="playerMove(4)"></div>
+        <div class="square text game-text" id="square5" onclick="playerMove(5)"></div>
+        <div class="square text game-text" id="square6" onclick="playerMove(6)"></div>
+        <div class="square text game-text" id="square7" onclick="playerMove(7)"></div>
+        <div class="square text game-text" id="square8" onclick="playerMove(8)"></div>
+        <div class="square text game-text" id="square9" onclick="playerMove(9)"></div>
         </div>
 
     </div>
