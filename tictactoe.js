@@ -299,10 +299,14 @@ function getPlayerInfo() {
     playerInfo.playerName = document.getElementsByName("name")[0].value;
     for (let i = 0; i < 3; i++) {
         if (selectedRadioButton[i].checked) {
+            playerInfo.difficulty = selectedRadioButton[i].value;
             board[3][0] = selectedRadioButton[i].value;
         }
     }
-    console.log(playerName);
+    localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
+    localStorage.setItem("board", JSON.stringify(board));
+    window.location.replace("./game.html");
+    console.log(playerInfo.playerName);
     console.log(board[3][0]);
 }
 
@@ -361,13 +365,48 @@ function checkForWin(board) {
             break outer;
         }
     }
+
+    if (win == 'o') {
+        playerInfo.losses++;
+    }
+    else if (win = 'x') {
+        playerInfo.wins++;
+    }
+    else {
+        playerInfo.ties++;
+    }
+
+    document.getElementById("win").innerHTML = playerInfo.wins;
+    document.getElementById("draw").innerHTML = playerInfo.ties;
+    document.getElementById("loss").innerHTML = playerInfo.losses;
+
     return win;
 }
 
-let playerInfo = {playerName:"", wins:0, losses:0, draws:0};
+function onload() {
+    try {
+        playerInfo = JSON.parse(localStorage.getItem("playerInfo"));
+        board = JSON.parse(localStorage.getItem("board"));
+        document.getElementById("difficulty").innerHTML = playerInfo.difficulty;
+        document.getElementById("name").innerHTML = playerInfo.playerName;
+    }
+    catch(e) {
+        console.log("onload function error");
+        console.log(e);
+    }
+}
+
+function restart(board) {
+    board = [['', '', ''],
+             ['', '', ''],
+             ['', '', ''], ["", "easy"]];
+    board[3][0] = playerInfo.difficulty;
+}
+
+let playerInfo = {playerName:"", wins:2, losses:0, ties:0, difficulty:""};
 
 let board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
 
-console.log(hard(board));
+onload();
