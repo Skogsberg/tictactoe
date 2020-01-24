@@ -288,6 +288,9 @@ function decideMoveDependingOnDifficulty(board) {
     else {
         console.log("decideLevel() function error: can not decide difficulty")
     }
+    drawBoard(board);
+    playerInfo.movesMade++;
+    checkForWin(board);
     playerInfo.playerAllowed = true;
 }
 
@@ -374,16 +377,20 @@ function checkForWin(board) {
     if (foundX && foundO) {
         playerInfo.movesMade = 9;
         playerInfo.ties++;
+        document.getElementById("score-text").innerHTML = "Tie"
     }
     else if (foundX) {
+        document.getElementById("score-text").innerHTML = "You Win"
         playerInfo.movesMade = 9;
         playerInfo.wins++;
     }
     else if (foundO) {
+        document.getElementById("score-text").innerHTML = "You Loose"
         playerInfo.movesMade = 9;
         playerInfo.losses++;
     }
     else if (playerInfo.movesMade == 9 && !foundX && !foundO) {
+        document.getElementById("score-text").innerHTML = "Tie"
         playerInfo.movesMade = 9;
         playerInfo.ties++;
     }
@@ -495,9 +502,6 @@ function playerMove(squareId) {
         playerInfo.playerAllowed = false;
         if (playerInfo.movesMade < 9) {
             timeout = setTimeout(decideMoveDependingOnDifficulty, 1000, board);
-            drawBoard(board);
-            playerInfo.movesMade++;
-            checkForWin(board);
         }
     }
     else {
@@ -514,6 +518,7 @@ function restart() {
     playerInfo.movesMade = 0;
     clearTimeout(timeout);
     playerInfo.playerAllowed = true;
+    document.getElementById("score-text").innerHTML = "..."
     drawBoard(board);
 }
 
