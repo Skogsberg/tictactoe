@@ -506,7 +506,7 @@ function playerMove(squareId) {
 }
 
 function restart() {
-
+    
     board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
@@ -525,3 +525,7 @@ let board = [['', '', ''],
              ['', '', ''], ["", "easy"]];
 
 onload();
+//Function for swich webpage to index.html
+function goHome(){
+    window.location.replace("./index.html")
+}
