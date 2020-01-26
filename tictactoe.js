@@ -506,19 +506,27 @@ function playerMove(squareId) {
     }
     else {
         console.log("Player can not make this move");
+        console.log(playerInfo.playerAllowed);
     }
 }
 
 function restart() {
-    
+    let selectedRadioButton = document.getElementsByName("difficulty");
     board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
     board[3][0] = playerInfo.difficulty;
     playerInfo.movesMade = 0;
     clearTimeout(timeout);
+    for (let i = 0; i < 3; i++) {
+        if (selectedRadioButton[i].checked) {
+            playerInfo.difficulty = selectedRadioButton[i].value;
+            board[3][0] = selectedRadioButton[i].value;
+        }
+    }
     playerInfo.playerAllowed = true;
     document.getElementById("score-text").innerHTML = "..."
+    document.getElementById("difficulty").innerHTML = playerInfo.difficulty;
     drawBoard(board);
 }
 
@@ -529,7 +537,6 @@ let board = [['', '', ''],
              ['', '', ''],
              ['', '', ''], ["", "easy"]];
 
-onload();
 //Function for swich webpage to index.html
 function goHome(){
     window.location.replace("./index.html")
