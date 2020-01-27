@@ -254,6 +254,7 @@ function hard(board) {
     makeMove(board, move);
 }
 
+// Easy every other time and hard every other time
 function medium(board) {
     let move = [undefined, undefined];
 
@@ -275,6 +276,7 @@ function makeMove(board, move) {
     drawBoard(board);
 }
 
+// The AI needs to know what difficulty the player selected in order to make a move
 function decideMoveDependingOnDifficulty(board) {
     if (board[3][0] == "easy") {
         easy(board);
@@ -308,6 +310,7 @@ function getPlayerInfo() {
     window.location.replace("./game.html");
 }
 
+// Check if the player or the AI won
 function checkForWin(board) {
     let win = [];
     let players = ['x', 'o'];
@@ -400,6 +403,9 @@ function checkForWin(board) {
     document.getElementById("loss").innerHTML = playerInfo.losses;
 }
 
+// Runs every time the page loads
+// Tries to get info from sessionStorage
+// If nothing is saved in sessionStorage: reset everything original values
 function onload() {
     try {
         playerInfo = JSON.parse(sessionStorage.getItem("playerInfo"));
@@ -424,6 +430,7 @@ function onload() {
     }
 }
 
+// Draws the player move on the board
 function drawBoard(board) {
     document.getElementById("square1").innerHTML = board[0][0].toUpperCase();
     document.getElementById("square2").innerHTML = board[0][1].toUpperCase();
@@ -436,6 +443,8 @@ function drawBoard(board) {
     document.getElementById("square9").innerHTML = board[2][2].toUpperCase();
 }
 
+// Checks if the player is allowed to make the move
+// This function is run every time the player presses a square on the board
 function playerMove(squareId) {
     let freeSquares = [];
     let move = [undefined, undefined];
@@ -501,6 +510,7 @@ function playerMove(squareId) {
         checkForWin(board);
         playerInfo.playerAllowed = false;
         if (playerInfo.movesMade < 9) {
+            // The AI needs to wait a short while (1 sec) before it makes a move
             timeout = setTimeout(decideMoveDependingOnDifficulty, 1000, board);
         }
     }
@@ -510,6 +520,7 @@ function playerMove(squareId) {
     }
 }
 
+// Reset the board and check if the player changed difficulty
 function restart() {
     let selectedRadioButton = document.getElementsByName("difficulty");
     board = [['', '', ''],
@@ -517,6 +528,7 @@ function restart() {
              ['', '', ''], ["", "easy"]];
     board[3][0] = playerInfo.difficulty;
     playerInfo.movesMade = 0;
+    // If the AI is qued to make a move: stop the AI from making that move
     clearTimeout(timeout);
     for (let i = 0; i < 3; i++) {
         if (selectedRadioButton[i].checked) {
@@ -530,14 +542,13 @@ function restart() {
     drawBoard(board);
 }
 
-let playerInfo = {playerName:"", wins:0, losses:0, ties:0, difficulty:"", movesMade:0, playerAllowed:true};
-let timeout;
-
-let board = [['', '', ''],
-             ['', '', ''],
-             ['', '', ''], ["", "easy"]];
-
 //Function for swich webpage to index.html
 function goHome(){
     window.location.replace("./index.html")
 }
+
+let playerInfo = {playerName:"", wins:0, losses:0, ties:0, difficulty:"", movesMade:0, playerAllowed:true};
+let timeout;
+let board = [['', '', ''],
+             ['', '', ''],
+             ['', '', ''], ["", "easy"]];
