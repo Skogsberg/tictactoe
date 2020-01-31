@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="onload()">
+    <!--Code for the upper container-->
+    <div class="container game-container">
+        <p class="text">TicTacToe</p>
+        <p class="text"><span>Difficulty: </span><span id="difficulty">x</span>
+        <span>| Name: </span><span id="name">y</span><span> | Win: </span>
+        <span id="win">0 </span> <span>| Draw: </span><span id="draw">0 </span>
+        <span>| Loss: </span><span id="loss">0 </span> <button type="button" class="play-buttom text new-buttom" onclick="restart()">New Game</button></p>
+    </div>
+    <!--Code for game container-->
+    <div class="flex-container flex-column">
+        <!--code for the squares used in the game table-->
+        <div class="flex-container flex-wrap" id="board">
+        <div class="square text game-text" id="square1" onclick="playerMove(1)"></div>
+        <div class="square text game-text" id="square2" onclick="playerMove(2)"></div>
+        <div class="square text game-text" id="square3" onclick="playerMove(3)"></div>
+        <div class="square text game-text" id="square4" onclick="playerMove(4)"></div>
+        <div class="square text game-text" id="square5" onclick="playerMove(5)"></div>
+        <div class="square text game-text" id="square6" onclick="playerMove(6)"></div>
+        <div class="square text game-text" id="square7" onclick="playerMove(7)"></div>
+        <div class="square text game-text" id="square8" onclick="playerMove(8)"></div>
+        <div class="square text game-text" id="square9" onclick="playerMove(9)"></div>
+        </div>
+    </div>
+    <!--Container the draw the final score Win/Tie/Loss-->
+    <div class="container container-down" id="down-Box">
+        <p class="text" id="score-text">...</p>
+        <p><input type="radio" name="difficulty" value="easy" class="in in-easy">
+        <label for="easy" class="text">Easy</label>
+        <input type="radio" name="difficulty" value="medium" class="in in-medium">
+        <label for="medium" class="text">Medium</label>
+        <input type="radio" name="difficulty" value="hard" class="in in-hard">
+        <label for="hard" class="text">Hard</label> <button type="button" name="Home" class="text play-buttom home" onclick="goHome()">Home</button> </p>
+    </div>
+    <script src="tictactoe.js"></script>
+</body>
+</html>

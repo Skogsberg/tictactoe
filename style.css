@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Candal&display=swap');
+/*Settings for image logo on index.html*/
+.imgLogo{
+    border-radius: 50%;
+    border: 3px solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 210px;
+    height: 210px;
+    box-shadow: 2px 4px;
+}
+/*Settings for text font*/
+.text{
+    font-family: 'Candal', sans-serif;
+    color: rgba(0, 0, 0, 0.6);
+    padding: 3px;
+    text-align: center;
+}
+.text-large{
+    font-size: 60px;
+    text-align: center;
+}
+/*Code for all continer */
+.container{
+    border: 3px solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.15);
+    text-align: center;
+    box-shadow: 1px 1px;
+}
+.container-down{
+    height: 100px;
+    margin: auto;
+    margin-top: 30px;
+}
+.name-input{
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, 0.6);
+    width: 200px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.10);
+}
+/*Settings for radio buttons*/
+.in{
+    border: 2px solid;
+    border-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.10);
+    transform: scale(1.5);
+}
+.in:hover{
+    cursor: pointer;
+}
+.play-buttom{
+    border: 3px solid;
+    border-color: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.10);
+    width: 100px;
+    height: 40px;
+}
+.play-buttom:hover{
+    background-color: rgba(0, 0, 0, 0.01);
+    cursor: pointer;
+}
+.text-small{
+    font-size: 10px;
+    padding-bottom: 3px;
+}
+.game-container{
+    height: 100px;
+}
+.new-buttom{
+    border: 2px solid;
+    border-color: rgba(0, 0, 0, 0.6);
+    width: 100px;
+    height: 30px;
+}
+.flex-container {
+/* In order to use flex-box we need to first set our display property */
+display: flex;
+/* center the container horizontally */
+justify-content: center;
+/* this will center content vertically */
+align-items: center;
+/* tells the container to align the children in columns rather than rows */
+padding: 5px;
+}
+.flex-column {
+height: 100%;
+width: 100%;
+flex-direction: column;
+}
+.flex-wrap {
+/* tells the container to drop down once it reaches max-width */
+flex-wrap: wrap;
+height: 450px;
+width: 500px;
+}
+.square {
+    border: 2px solid rgba(0, 0, 0, .75);
+    border-radius: 12px;
+    height: 150px;
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 2px 2px ;
+    vertical-align:middle;
+    display:inline-block;
+}
+.square:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+.game-text{
+    font-size: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+.home{
+    height: 30px;
+    
+}
